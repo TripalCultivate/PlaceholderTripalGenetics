@@ -1,4 +1,4 @@
-# Tripal Crop Genetics
+# PLACEHOLDER TRIPAL Genetics
 
 **Developed by the University of Saskatchewan, Pulse Crop Bioinformatics team.**
 
