@@ -5,6 +5,9 @@ on:
     branches-ignore:
       - 4.x
 
+env:
+  PKG_NAME: trpgeno
+  MODULES: "trpgeno_genetics trpgeno_genotypes trpgeno_genomatrix trpgeno_qtl trpgeno_vcf"
 jobs:
   run-tests:
     runs-on: ubuntu-latest
@@ -44,12 +47,12 @@ jobs:
           IMAGE_TAG: drupal${{ matrix.drupal-version }}-php${{ matrix.php-version}}-pgsql${{ matrix.pgsql-version }}
         run: |
           docker run --publish=80:80 --name=tripaldocker -tid \
-            --volume=`pwd`:/var/www/drupal9/web/modules/trpgeno tripalproject/tripaldocker:$IMAGE_TAG
+            --volume=`pwd`:/var/www/drupal9/web/modules/$PKG_NAME tripalproject/tripaldocker:$IMAGE_TAG
       # Install the modules
       - name: Install our package in Docker
         run: |
           docker exec tripaldocker service postgresql restart
-          docker exec tripaldocker drush en trpgeno_genetics trpgeno_genotypes trpgeno_genomatrix trpgeno_qtl trpgeno_vcf --yes
+          docker exec tripaldocker drush en $MODULES --yes
       # Runs the PHPUnit tests.
       - name: Run PHPUnit Tests
         env:
@@ -61,5 +64,5 @@ jobs:
           docker exec -e SIMPLETEST_BASE_URL=$SIMPLETEST_BASE_URL \
             -e SIMPLETEST_DB=$SIMPLETEST_DB \
             -e BROWSER_OUTPUT_DIRECTORY=$BROWSER_OUTPUT_DIRECTORY \
-            --workdir=/var/www/drupal9/web/modules/trpgeno \
+            --workdir=/var/www/drupal9/web/modules/$PKG_NAME \
             tripaldocker phpunit
