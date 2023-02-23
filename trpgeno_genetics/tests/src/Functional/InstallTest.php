@@ -45,6 +45,27 @@ class InstallTest extends ChadoTestBrowserBase {
     $this->assertEquals(200, $status_code, "The module install page should be able to load $context.");
     $this->assertSession()->pageTextContains('Genetic Data API');
 
+  }
+
+  /**
+   * Tests the module overview help.
+   */
+  public function testHelp() {
+    $session = $this->getSession();
+
+    $some_extected_text = 'genetic and genotypic data';
+
+    // Ensure we have an admin user.
+    $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+    $this->drupalLogin($user);
+
+    $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+    // Call the hook to ensure it is returning text.
+    $output = trpgeno_genetics_help('help.page.trpgeno_genetics');
+    $this->assertNotEmpty($output, "The help hook should return output $context.");
+    $this->assertStringContainsString($some_extected_text, $output);
+
     // Help Page.
     $this->drupalGet('admin/help');
     $status_code = $session->getStatusCode();
@@ -53,7 +74,7 @@ class InstallTest extends ChadoTestBrowserBase {
     $this->drupalGet('admin/help/trpgeno_genetics');
     $status_code = $session->getStatusCode();
     $this->assertEquals(200, $status_code, "The module help page should be able to load $context.");
-    $this->assertSession()->pageTextContains('genetic and genotypic data');
+    $this->assertSession()->pageTextContains($some_extected_text);
   }
 
 }
