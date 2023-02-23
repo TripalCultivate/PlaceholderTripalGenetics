@@ -1,7 +1,7 @@
 name: Genotypes
 type: module
 description: Expands Chado to support large-scale genotypic data.
-package: "Tripal Crop: Genetics"
+package: "Placeholder: Genetics"
 core_version_requirement: ^9 || ^10
 dependencies:
   - tripal

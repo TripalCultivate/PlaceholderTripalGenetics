@@ -1,7 +1,7 @@
-name: API
+name: Genetic Data API
 type: module
 description: Provides services and plugins to support common functionality within this package.
-package: "Tripal Crop: Genetics"
+package: "Placeholder: Genetics"
 core_version_requirement: ^9 || ^10
 dependencies:
   - tripal
