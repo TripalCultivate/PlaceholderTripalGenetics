@@ -66,6 +66,8 @@ jobs:
           docker exec tripaldocker ls /var/www/drupal9/web/modules/$PKG_NAME
       - name: Publish code coverage to Code Climate
         run: |
+          docker exec --workdir=/var/www/drupal9/web/modules/$PKG_NAME tripaldocker \
+            git config --global --add safe.directory /var/www/drupal9/web/modules/$PKG_NAME
           docker exec --workdir=/var/www/drupal9/web/modules/$PKG_NAME \
             tripaldocker ./cc-test-reporter after-build clover.xml \
             --id ${{ secrets.CODECLIMATE_TEST_REPORTER_ID }} \
