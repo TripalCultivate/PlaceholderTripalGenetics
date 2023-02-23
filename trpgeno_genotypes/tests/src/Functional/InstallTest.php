@@ -20,30 +20,40 @@ class InstallTest extends ChadoTestBrowserBase {
    *
    * @var array
    */
-  protected static $modules = ['trpgeno_genetics', 'trpgeno_genotypes'];
+  protected static $modules = ['help', 'trpgeno_genetics', 'trpgeno_genotypes'];
 
-  /**
-   * A user with permission to administer site configuration.
-   *
-   * @var \Drupal\user\UserInterface
-   */
-  protected $user;
+    /**
+     * Tests that a specific set of pages load with a 200 response.
+     */
+    public function testLoad() {
+      $session = $this->getSession();
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->user = $this->drupalCreateUser(['administer site configuration']);
-    $this->drupalLogin($this->user);
+      // Ensure we have an admin user.
+      $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+      $this->drupalLogin($user);
+
+      $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+      // Front Page.
+      $this->drupalGet(Url::fromRoute('<front>'));
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The front page should be able to load $context.");
+
+      // Extend Admin page.
+      $this->drupalGet('admin/modules');
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The module install page should be able to load $context.");
+      $this->assertSession()->pageTextContains('Genotypes');
+
+      // Help Page.
+      $this->drupalGet('admin/help');
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The admin help page should be able to load $context.");
+      $this->assertSession()->pageTextContains('Genotypes');
+      $this->drupalGet('admin/help/trpgeno_genotypes');
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The module help page should be able to load $context.");
+      $this->assertSession()->pageTextContains('support large-scale genotypic data');
+    }
+
   }
-
-  /**
-   * Tests that the home page loads with a 200 response.
-   */
-  public function testLoad() {
-    $this->drupalGet(Url::fromRoute('<front>'));
-    $this->assertSession()->statusCodeEquals(200);
-  }
-
-}
