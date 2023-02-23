@@ -8,7 +8,7 @@ use Drupal\Tests\tripal_chado\Functional\ChadoTestBrowserBase;
 /**
  * Simple test to ensure that main page loads with module enabled.
  *
- * @group Tripal Genotypes
+ * @group TripGeno Genotypes
  * @group Installation
  */
 class InstallTest extends ChadoTestBrowserBase {
