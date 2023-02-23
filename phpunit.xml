@@ -14,15 +14,15 @@
   <coverage>
     <include>
       <directory suffix=".php">trpgeno_genetics/src</directory>
-      <!--<file>trpgeno_genetics/trpgeno_genetics.module</file>-->
+      <file>trpgeno_genetics/trpgeno_genetics.module</file>
       <directory suffix=".php">trpgeno_genomatrix/src</directory>
-      <!--<file>trpgeno_genomatrix/trpgeno_genomatrix.module</file>-->
+      <file>trpgeno_genomatrix/trpgeno_genomatrix.module</file>
       <directory suffix=".php">trpgeno_genotypes/src</directory>
-      <!--<file>trpgeno_genotypes/trpgeno_genotypes.module</file>-->
+      <file>trpgeno_genotypes/trpgeno_genotypes.module</file>
       <directory suffix=".php">trpgeno_qtl/src</directory>
-      <!--<file>trpgeno_qtl/trpgeno_qtl.module</file>-->
+      <file>trpgeno_qtl/trpgeno_qtl.module</file>
       <directory suffix=".php">trpgeno_vcf/src</directory>
-      <!--<file>trpgeno_vcf/trpgeno_vcf.module</file>-->
+      <file>trpgeno_vcf/trpgeno_vcf.module</file>
     </include>
   </coverage>
   <php>
