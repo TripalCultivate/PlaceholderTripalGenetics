@@ -53,7 +53,7 @@ class InstallTest extends ChadoTestBrowserBase {
 
     $session = $this->getSession();
 
-    $some_expected_text = 'genetic and genotypic data';
+    $some_expected_text = 'tool for quick visual querying of genotypic differences';
 
     // Ensure we have an admin user.
     $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);

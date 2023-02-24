@@ -53,7 +53,7 @@ class InstallTest extends ChadoTestBrowserBase {
 
       $session = $this->getSession();
 
-      $some_expected_text = 'support large-scale genotypic data';
+      $some_expected_text = 'expands Chado to support large-scale';
 
       // Ensure we have an admin user.
       $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);

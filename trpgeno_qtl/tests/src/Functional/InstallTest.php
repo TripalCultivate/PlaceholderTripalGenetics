@@ -53,7 +53,7 @@ class InstallTest extends ChadoTestBrowserBase {
 
       $session = $this->getSession();
 
-      $some_expected_text = 'expands Tripal Content pages to better support Genetic Maps + QTL';
+      $some_expected_text = 'support Genetic Maps + QTL';
 
       // Ensure we have an admin user.
       $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);

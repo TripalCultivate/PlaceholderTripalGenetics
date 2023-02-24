@@ -53,7 +53,7 @@ class InstallTest extends ChadoTestBrowserBase {
 
       $session = $this->getSession();
 
-      $some_expected_text = 'tool for easily filtering VCF files and converting';
+      $some_expected_text = 'VCF files and converting to different formats';
 
       // Ensure we have an admin user.
       $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
