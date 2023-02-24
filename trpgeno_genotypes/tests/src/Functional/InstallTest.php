@@ -64,7 +64,7 @@ class InstallTest extends ChadoTestBrowserBase {
       // Call the hook to ensure it is returning text.
       $name = 'help.page.trpgeno_genotypes';
       $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
-      $output = trpgeno_genetics_help($name, $match);
+      $output = trpgeno_genotypes_help($name, $match);
       $this->assertNotEmpty($output, "The help hook should return output $context.");
       $this->assertStringContainsString($some_expected_text, $output);
 
