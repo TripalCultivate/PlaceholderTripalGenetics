@@ -4,3 +4,32 @@
  * @file
  * Contains all hook implementations for this module.
  */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function trpgeno_genetics_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Provides the module overview in the help tab.
+    case 'help.page.trpgeno_genetics':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+
+      $output .= '<p>' . t('This module provides services and plugins to support
+        common functionality surrounding genetic and genotypic data integration
+        in Tripal.') . '</p>';
+
+      $output .= '<p>' . t('While most of these provide an application programmer
+        interface (API) to the other modules in this package, there are also a
+        couple of generic Tripal fields provided to support genetic markers
+        and variants. These fields will be automatically added to Tripal Content
+        Types storing core data in the Chado stock or feature tables such as
+        Germplasm Accessions, Sequence Variant and Genetic Markers.') . '</p>';
+
+      return $output;
+
+    default:
+  }
+}

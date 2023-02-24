@@ -20,30 +20,63 @@ class InstallTest extends ChadoTestBrowserBase {
    *
    * @var array
    */
-  protected static $modules = ['trpgeno_genetics', 'trpgeno_qtl'];
+  protected static $modules = ['help', 'trpgeno_genetics', 'trpgeno_qtl'];
 
-  /**
-   * A user with permission to administer site configuration.
-   *
-   * @var \Drupal\user\UserInterface
-   */
-  protected $user;
+    /**
+     * Tests that a specific set of pages load with a 200 response.
+     */
+    public function testLoad() {
+      $session = $this->getSession();
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-    $this->user = $this->drupalCreateUser(['administer site configuration']);
-    $this->drupalLogin($this->user);
+      // Ensure we have an admin user.
+      $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+      $this->drupalLogin($user);
+
+      $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+      // Front Page.
+      $this->drupalGet(Url::fromRoute('<front>'));
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The front page should be able to load $context.");
+
+      // Extend Admin page.
+      $this->drupalGet('admin/modules');
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The module install page should be able to load $context.");
+      $this->assertSession()->pageTextContains('Genetic Maps + QTL');
+    }
+
+    /**
+     * Tests the module overview help.
+     */
+    public function testHelp() {
+
+      $session = $this->getSession();
+
+      $some_expected_text = 'support Genetic Maps + QTL';
+
+      // Ensure we have an admin user.
+      $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+      $this->drupalLogin($user);
+
+      $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+      // Call the hook to ensure it is returning text.
+      $name = 'help.page.trpgeno_qtl';
+      $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
+      $output = trpgeno_qtl_help($name, $match);
+      $this->assertNotEmpty($output, "The help hook should return output $context.");
+      $this->assertStringContainsString($some_expected_text, $output);
+
+      // Help Page.
+      $this->drupalGet('admin/help');
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The admin help page should be able to load $context.");
+      $this->assertSession()->pageTextContains('Genetic Maps + QTL');
+      $this->drupalGet('admin/help/trpgeno_qtl');
+      $status_code = $session->getStatusCode();
+      $this->assertEquals(200, $status_code, "The module help page should be able to load $context.");
+      $this->assertSession()->pageTextContains($some_expected_text);
+    }
+
   }
-
-  /**
-   * Tests that the home page loads with a 200 response.
-   */
-  public function testLoad() {
-    $this->drupalGet(Url::fromRoute('<front>'));
-    $this->assertSession()->statusCodeEquals(200);
-  }
-
-}

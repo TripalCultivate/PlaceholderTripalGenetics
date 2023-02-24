@@ -1,7 +1,7 @@
 name: Genetic Maps + QTL
 type: module
 description: Expands Tripal Content pages to better support Genetic Maps + QTL.
-package: "Tripal Crop: Genetics"
+package: "Placeholder: Genetics"
 core_version_requirement: ^9 || ^10
 dependencies:
   - tripal
