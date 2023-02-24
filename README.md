@@ -21,6 +21,13 @@ PHPUnit for testing and CodeClimate to ensure good test coverage and maintainabi
 [![Maintainability](https://api.codeclimate.com/v1/badges/c40fb8350f65a50c3042/maintainability)](https://codeclimate.com/github/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c40fb8350f65a50c3042/test_coverage)](https://codeclimate.com/github/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/test_coverage)
 
+The following compatibility is proven via automated testing workflows.
+
+| Drupal | 9.3.x | 9.4.x | 9.5.x | 10.0.x |
+|--------|-------|-------|-------|--------|
+| **PHP 8.0** | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.0_D9_3x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.0_D9_3x.yml) | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.0_D9_4x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.0_D9_4x.yml) | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.0_D9_5x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.0_D9_5x.yml) |  |
+| **PHP 8.1** | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D9_3x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D9_3x.yml) | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D9_4x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D9_4x.yml) | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D9_5x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D9_5x.yml) | [![PHPUnit](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D10_0x.yml/badge.svg)](https://github.com/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/actions/workflows/MAIN-phpunit-php8.1_D10_0x.yml) |
+
 ## Currently under Active Development
 
 This package is not ready for use in Tripal sites as it is actively being developed.

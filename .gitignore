@@ -1,2 +1,2 @@
 supervisord*
-.phpunit*
+.phpunit.result.cache
