@@ -13,6 +13,14 @@
 - Genotype Matrix tool for quick visual querying of genotypic differences between germplasm in smaller regions (e.g. QTL or GWAS peak)
 - Management of metadata for VCF files including a form for researchers to filter and download the results in multiple formats.
 
+## Automated Testing
+
+This package is dedicated to a high standard of automated testing. We use
+PHPUnit for testing and CodeClimate to ensure good test coverage and maintainability.
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/c40fb8350f65a50c3042/maintainability)](https://codeclimate.com/github/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c40fb8350f65a50c3042/test_coverage)](https://codeclimate.com/github/PLACEHOLDER-TRIPAL/PlaceholderTripalGenetics/test_coverage)
+
 ## Currently under Active Development
 
 This package is not ready for use in Tripal sites as it is actively being developed.

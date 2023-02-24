@@ -4,3 +4,26 @@
  * @file
  * Contains all hook implementations for this module.
  */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function trpgeno_genotypes_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Provides the module overview in the help tab.
+    case 'help.page.trpgeno_genotypes':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+
+      $output .= '<p>' . t('This module expands Chado to support large-scale
+      genotypic data.') . '</p>';
+
+      $output .= '<p>' . t('') . '</p>';
+
+      return $output;
+
+    default:
+  }
+}

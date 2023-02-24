@@ -1,7 +1,7 @@
 name: Genotype Matrix
 type: module
 description: Creates a germplasm by marker matrix tool for quick visual querying of genotypic differences in smaller regions (e.g. QTL or GWAS peak).
-package: "Tripal Crop: Genetics"
+package: "Placeholder: Genetics"
 core_version_requirement: ^9 || ^10
 dependencies:
   - tripal
