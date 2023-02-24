@@ -44,6 +44,29 @@ class InstallTest extends ChadoTestBrowserBase {
       $status_code = $session->getStatusCode();
       $this->assertEquals(200, $status_code, "The module install page should be able to load $context.");
       $this->assertSession()->pageTextContains('Variant Call Format (VCF)');
+    }
+
+    /**
+     * Tests the module overview help.
+     */
+    public function testHelp() {
+
+      $session = $this->getSession();
+
+      $some_expected_text = 'tool for easily filtering VCF files and converting';
+
+      // Ensure we have an admin user.
+      $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+      $this->drupalLogin($user);
+
+      $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+      // Call the hook to ensure it is returning text.
+      $name = 'help.page.trpgeno_vcf';
+      $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
+      $output = trpgeno_genetics_help($name, $match);
+      $this->assertNotEmpty($output, "The help hook should return output $context.");
+      $this->assertStringContainsString($some_expected_text, $output);
 
       // Help Page.
       $this->drupalGet('admin/help');
@@ -53,7 +76,7 @@ class InstallTest extends ChadoTestBrowserBase {
       $this->drupalGet('admin/help/trpgeno_vcf');
       $status_code = $session->getStatusCode();
       $this->assertEquals(200, $status_code, "The module help page should be able to load $context.");
-      $this->assertSession()->pageTextContains('tool for easily filtering VCF files and converting');
+      $this->assertSession()->pageTextContains($some_expected_text);
     }
 
   }

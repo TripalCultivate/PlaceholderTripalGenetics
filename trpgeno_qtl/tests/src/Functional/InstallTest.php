@@ -44,6 +44,29 @@ class InstallTest extends ChadoTestBrowserBase {
       $status_code = $session->getStatusCode();
       $this->assertEquals(200, $status_code, "The module install page should be able to load $context.");
       $this->assertSession()->pageTextContains('Genetic Maps + QTL');
+    }
+
+    /**
+     * Tests the module overview help.
+     */
+    public function testHelp() {
+
+      $session = $this->getSession();
+
+      $some_expected_text = 'expands Tripal Content pages to better support Genetic Maps + QTL';
+
+      // Ensure we have an admin user.
+      $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+      $this->drupalLogin($user);
+
+      $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+      // Call the hook to ensure it is returning text.
+      $name = 'help.page.trpgeno_qtl';
+      $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
+      $output = trpgeno_genetics_help($name, $match);
+      $this->assertNotEmpty($output, "The help hook should return output $context.");
+      $this->assertStringContainsString($some_expected_text, $output);
 
       // Help Page.
       $this->drupalGet('admin/help');
@@ -53,7 +76,7 @@ class InstallTest extends ChadoTestBrowserBase {
       $this->drupalGet('admin/help/trpgeno_qtl');
       $status_code = $session->getStatusCode();
       $this->assertEquals(200, $status_code, "The module help page should be able to load $context.");
-      $this->assertSession()->pageTextContains('expands Tripal Content pages to better support Genetic Maps + QTL');
+      $this->assertSession()->pageTextContains($some_expected_text);
     }
 
   }

@@ -62,7 +62,9 @@ class InstallTest extends ChadoTestBrowserBase {
     $context = '(modules installed: ' . implode(',', self::$modules) . ')';
 
     // Call the hook to ensure it is returning text.
-    $output = trpgeno_genetics_help('help.page.trpgeno_genetics');
+    $name = 'help.page.trpgeno_genetics';
+    $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
+    $output = trpgeno_genetics_help($name, $match);
     $this->assertNotEmpty($output, "The help hook should return output $context.");
     $this->assertStringContainsString($some_extected_text, $output);
 

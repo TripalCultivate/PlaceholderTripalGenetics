@@ -44,6 +44,29 @@ class InstallTest extends ChadoTestBrowserBase {
       $status_code = $session->getStatusCode();
       $this->assertEquals(200, $status_code, "The module install page should be able to load $context.");
       $this->assertSession()->pageTextContains('Genotypes');
+    }
+
+    /**
+     * Tests the module overview help.
+     */
+    public function testHelp() {
+
+      $session = $this->getSession();
+
+      $some_expected_text = 'support large-scale genotypic data';
+
+      // Ensure we have an admin user.
+      $user = $this->drupalCreateUser(['access administration pages', 'administer modules']);
+      $this->drupalLogin($user);
+
+      $context = '(modules installed: ' . implode(',', self::$modules) . ')';
+
+      // Call the hook to ensure it is returning text.
+      $name = 'help.page.trpgeno_genotypes';
+      $match = $this->createStub(\Drupal\Core\Routing\RouteMatch::class);
+      $output = trpgeno_genetics_help($name, $match);
+      $this->assertNotEmpty($output, "The help hook should return output $context.");
+      $this->assertStringContainsString($some_expected_text, $output);
 
       // Help Page.
       $this->drupalGet('admin/help');
@@ -53,7 +76,7 @@ class InstallTest extends ChadoTestBrowserBase {
       $this->drupalGet('admin/help/trpgeno_genotypes');
       $status_code = $session->getStatusCode();
       $this->assertEquals(200, $status_code, "The module help page should be able to load $context.");
-      $this->assertSession()->pageTextContains('support large-scale genotypic data');
+      $this->assertSession()->pageTextContains($some_expected_text);
     }
 
   }
